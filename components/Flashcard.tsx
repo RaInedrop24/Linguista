@@ -99,19 +99,19 @@ export function Flashcard({
             <button
               onClick={handleAudio}
               disabled={!hasAudio || isPlaying}
-              className={`flex items-center gap-2 px-6 py-3 rounded-lg transition ${hasAudio
-                ? 'bg-brand-100 dark:bg-brand-900/30 text-brand-600 dark:text-brand-400 hover:bg-brand-200 dark:hover:bg-brand-900/50'
+              className={`flex items-center gap-2 px-8 py-4 rounded-lg transition min-h-[44px] ${hasAudio
+                ? 'bg-brand-100 dark:bg-brand-900/30 text-brand-600 dark:text-brand-400 hover:bg-brand-200 dark:hover:bg-brand-900/50 active:scale-95'
                 : 'bg-gray-100 dark:bg-gray-700 text-gray-400 dark:text-gray-500 cursor-not-allowed'
                 }`}
             >
               <span className="text-2xl">🔊</span>
-              <span className="font-medium">
+              <span className="font-medium text-base">
                 {isPlaying ? 'Playing...' : 'Listen'}
               </span>
             </button>
             <button
               onClick={handleFlip}
-              className="mt-8 px-8 py-3 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition font-medium"
+              className="mt-8 px-8 py-4 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition font-medium min-h-[44px] active:scale-95"
             >
               Show Answer
             </button>
@@ -150,13 +150,13 @@ export function Flashcard({
             <div className="mt-8 flex gap-4">
               <button
                 onClick={onDidntKnow}
-                className="flex-1 px-6 py-4 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-xl hover:bg-red-100 dark:hover:bg-red-900/40 transition font-semibold text-lg border border-red-100 dark:border-red-900/50"
+                className="flex-1 px-6 py-5 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-xl hover:bg-red-100 dark:hover:bg-red-900/40 transition font-semibold text-lg border border-red-100 dark:border-red-900/50 min-h-[56px] active:scale-95"
               >
                 I didn&apos;t know it
               </button>
               <button
                 onClick={onKnew}
-                className="flex-1 px-6 py-4 bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 rounded-xl hover:bg-green-100 dark:hover:bg-green-900/40 transition font-semibold text-lg border border-green-100 dark:border-green-900/50"
+                className="flex-1 px-6 py-5 bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 rounded-xl hover:bg-green-100 dark:hover:bg-green-900/40 transition font-semibold text-lg border border-green-100 dark:border-green-900/50 min-h-[56px] active:scale-95"
               >
                 I knew it
               </button>
