@@ -39,6 +39,7 @@ export default function QuizPage() {
     if (status === 'authenticated') {
       fetchDueWords();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status, mode]);
 
   const fetchDueWords = async () => {

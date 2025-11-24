@@ -78,7 +78,7 @@ export default async function Home() {
                 Smart Algorithm
               </h3>
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                Our spaced repetition system (SRS) predicts when you're about to forget a word and schedules a review instantly.
+                Our spaced repetition system (SRS) predicts when you&apos;re about to forget a word and schedules a review instantly.
               </p>
             </div>
 

@@ -70,7 +70,7 @@ export default async function DashboardPage() {
               Dashboard
             </h1>
             <p className="text-gray-600 dark:text-gray-400">
-              Welcome back! Here's your progress overview.
+              Welcome back! Here&apos;s your progress overview.
             </p>
           </div>
 

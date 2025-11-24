@@ -135,12 +135,12 @@ export function Flashcard({
                     Example
                   </div>
                   <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                    <span className="italic">"{exampleSentence}"</span>
+                    <span className="italic">&quot;{exampleSentence}&quot;</span>
                     {exampleEnglish && (
                       <>
                         <br />
                         <span className="text-gray-500 dark:text-gray-400">— </span>
-                        <span className="text-gray-600 dark:text-gray-400">"{exampleEnglish}"</span>
+                        <span className="text-gray-600 dark:text-gray-400">&quot;{exampleEnglish}&quot;</span>
                       </>
                     )}
                   </p>
