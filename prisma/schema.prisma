@@ -1,0 +1,74 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// User authentication and profile
+model User {
+  id            String         @id @default(cuid())
+  email         String         @unique
+  password      String
+  name          String
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  userProgress  UserProgress[]
+}
+
+// Italian vocabulary items
+model Vocabulary {
+  id                    String         @id @default(cuid())
+  italian               String
+  english               String
+  partOfSpeech          String         // noun, verb, adjective, etc.
+  exampleSentence       String         @default("")
+  exampleSentenceEnglish String?       // cached English translation of example
+  frequency             Int            @default(0) // ranking for common words
+  source                String         @default("seed") // seed, n8n, manual
+  audioUrl              String?        // cached TTS audio filename (e.g., "ciao.mp3")
+  createdAt             DateTime       @default(now())
+  conjugations          Conjugation[]
+  userProgress          UserProgress[]
+
+  @@index([frequency])
+  @@index([partOfSpeech])
+}
+
+// Verb conjugations
+model Conjugation {
+  id           String     @id @default(cuid())
+  vocabularyId String
+  tense        String     // Presente, Passato Prossimo, Futuro, etc.
+  person       String     // io, tu, lui/lei, noi, voi, loro
+  form         String     // conjugated form
+  vocabulary   Vocabulary @relation(fields: [vocabularyId], references: [id], onDelete: Cascade)
+
+  @@index([vocabularyId])
+}
+
+// Spaced Repetition System (SRS) tracking
+model UserProgress {
+  id              String     @id @default(cuid())
+  userId          String
+  vocabularyId    String
+  boxLevel        Int        @default(1) // 1-5 (Leitner Box System)
+  nextReviewDate  DateTime   @default(now())
+  lastQualityScore Int       @default(0) // 0-5 rating
+  reviewCount     Int        @default(0)
+  correctCount    Int        @default(0)
+  incorrectCount  Int        @default(0)
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+  user            User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  vocabulary      Vocabulary @relation(fields: [vocabularyId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, vocabularyId])
+  @@index([userId, nextReviewDate])
+  @@index([nextReviewDate])
+}
