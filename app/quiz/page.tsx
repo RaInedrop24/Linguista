@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Flashcard } from '@/components/Flashcard';
@@ -15,7 +15,7 @@ interface VocabularyItem {
   progressId: string;
 }
 
-export default function QuizPage() {
+function QuizContent() {
   const { data: session, status } = useSession();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -229,5 +229,13 @@ export default function QuizPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function QuizPage() {
+  return (
+    <Suspense fallback={<div>Loading quiz...</div>}>
+      <QuizContent />
+    </Suspense>
   );
 }
